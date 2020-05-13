@@ -1,3 +1,8 @@
+//import VideoList.jsx
+//import src/data/exampleVideoData.js
+
+
+//get from exampleVideoData array w/nested objects: id.videoId, snippet.title, snippet.description
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +16,7 @@ class App extends React.Component {
       <div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <div><h5><em>check</em> view goes here</h5></div>
+          <div><h5><em>search</em> view goes here</h5></div>
         </div>
       </nav>
       <div className="row">
