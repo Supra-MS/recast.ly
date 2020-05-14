@@ -1,6 +1,7 @@
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
 class App extends React.Component {
@@ -30,12 +31,12 @@ class App extends React.Component {
         <div className="row">
           <div className="col-md-7">
             <div>
-              <VideoPlayer streamVideo={ this.state.streamingVideo } />
+              <VideoPlayer streamVideo={this.state.streamingVideo} />
             </div>
           </div>
           <div className="col-md-5">
             <div>
-              <VideoList videos={ this.state.videos } handleVideoClick={this.handleVideoClick.bind(this)} />
+              <VideoList videos={this.state.videos} handleVideoClick={this.handleVideoClick.bind(this)} />
             </div>
           </div>
         </div>
