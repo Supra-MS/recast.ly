@@ -1,5 +1,5 @@
-//import VideoList.jsx
-//import src/data/exampleVideoData.js
+import VideoList from './VideoList.js';
+import exampleVideoData from '../data/exampleVideoData.js';
 
 
 //get from exampleVideoData array w/nested objects: id.videoId, snippet.title, snippet.description
@@ -7,7 +7,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      done: false
+      done: false,
+      videos: exampleVideoData
     };
   }
 
@@ -24,7 +25,10 @@ class App extends React.Component {
             <div><h5><em>videoPlayer</em> view goes here</h5></div>
           </div>
           <div className="col-md-5">
-            <div><h5><em>videoList</em> view goes here</h5></div>
+            <div>
+              {/* <h5><em>videoList</em> view goes here</h5> */}
+              <VideoList videos={ this.state.videos } />
+            </div>
           </div>
         </div>
       </div>
