@@ -1,9 +1,8 @@
+import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
-import exampleVideoData from '../data/exampleVideoData.js';
 
 
-//get from exampleVideoData array w/nested objects: id.videoId, snippet.title, snippet.description
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +11,12 @@ class App extends React.Component {
       videos: exampleVideoData,
       streamingVideo: exampleVideoData[0]
     };
+  }
+
+  handleVideoClick(video) {
+    this.setState({
+      streamingVideo: video
+    });
   }
 
   render() {
@@ -30,7 +35,7 @@ class App extends React.Component {
           </div>
           <div className="col-md-5">
             <div>
-              <VideoList videos={ this.state.videos } />
+              <VideoList videos={ this.state.videos } handleVideoClick={this.handleVideoClick.bind(this)} />
             </div>
           </div>
         </div>
@@ -42,3 +47,4 @@ class App extends React.Component {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 export default App;
+
