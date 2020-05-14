@@ -5,7 +5,7 @@ describe ('VideoPlayer', function() {
     renderIntoDocument,
     findRenderedDOMComponentWithClass
   } = React.addons.TestUtils;
-  
+
   var cuteCatVideo, superCuteCatVideo, hackReactorVideo;
 
   // In order to leverage React's test utility function `findRenderedDOMComponentWithClass`
@@ -16,19 +16,19 @@ describe ('VideoPlayer', function() {
   beforeEach(function() {
     cuteCatVideo = renderIntoDocument(
       <Wrapper>
-        <VideoPlayer video={window.fakeVideoData[0]} />
+        <VideoPlayer streamVideo={window.fakeVideoData[0]} />
       </Wrapper>
     );
 
     superCuteCatVideo = renderIntoDocument(
       <Wrapper>
-        <VideoPlayer video={window.fakeVideoData[1]} />
+        <VideoPlayer streamVideo={window.fakeVideoData[1]} />
       </Wrapper>
     );
 
     hackReactorVideo = renderIntoDocument(
       <Wrapper>
-        <VideoPlayer video={window.fakeVideoData[2]} />
+        <VideoPlayer streamVideo={window.fakeVideoData[2]} />
       </Wrapper>
     );
   });
@@ -42,9 +42,9 @@ describe ('VideoPlayer', function() {
     var superCuteCatVideoIFrameElement = findRenderedDOMComponentWithClass(superCuteCatVideo, 'embed-responsive-item');
     var hackReactorVideoIFrameElement = findRenderedDOMComponentWithClass(hackReactorVideo, 'embed-responsive-item');
 
-    expect(cuteCatVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000001');
-    expect(superCuteCatVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000002');
-    expect(hackReactorVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000003');
+    expect(cuteCatVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000001?autoplay=0');
+    expect(superCuteCatVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000002?autoplay=0');
+    expect(hackReactorVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000003?autoplay=0');
   });
 
   it('should dynamically render a video\'s title', function() {
