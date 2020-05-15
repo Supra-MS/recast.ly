@@ -1,6 +1,7 @@
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
+import Search from './Search.js';
 import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
@@ -20,12 +21,35 @@ class App extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.onSubmitChange('react');
+  }
+
+  onSubmitChange(query) {
+    let options = {
+      key: YOUTUBE_API_KEY,
+      query: query,
+      max: 3
+    };
+
+    console.log(options.key);
+    console.log(options.query);
+    this.props.searchYouTube(options, (videos) => {
+      this.setState({
+        videos: videos,
+        streamingVideo: videos[0]
+      });
+    });
+  }
+
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <div>
+              <Search searchSubmit={this.onSubmitChange.bind(this)}/>
+            </div>
           </div>
         </nav>
         <div className="row">
