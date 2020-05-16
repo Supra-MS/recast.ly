@@ -12,6 +12,9 @@ class App extends React.Component {
       videos: exampleVideoData,
       streamingVideo: exampleVideoData[0]
     };
+    // Tests are passing without any timeouts[ - uncomment debounce timeout]. If we give timeouts then it is failing.
+    this.onSubmitChange = this.onSubmitChange.bind(this);
+    this.onSubmitChange = _.debounce(this.onSubmitChange, 2000);
   }
 
   handleVideoClick(video) {
@@ -21,8 +24,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.onSubmitChange('violin');
+    setTimeout(() => {
+      this.onSubmitChange('violin');
+    }, 1500);
+    // order of running:
+    // constructor, render, componentDidMount
+    // this.onSubmitChange = _.debounce(this.onSubmitChange, 2000);
   }
+
 
   onSubmitChange(query) {
     let options = {
@@ -41,10 +50,13 @@ class App extends React.Component {
         streamingVideo: videos[0]
       });
     });
-
   }
 
   render() {
+    // put asynchronous calls/side-effects in componentDidComponent (within .then of that call). Below is not recommended.
+    // eslint-disable-next-line indent
+      /* this.onSubmitChange = this.onSubmitChange.bind(this);
+      this.onSubmitChange = _.debounce(this.onSubmitChange, 1000); */
     return (
       <div>
         <nav className="navbar">
@@ -77,54 +89,6 @@ class App extends React.Component {
 export default App;
 
 
-/*
-    Initial state:
-    timeout: 0,
-    query: 'dogs'
-
-    componentDidMount()
-    let options = {
-      key: YOUTUBE_API_KEY,
-      query: this.state.query,
-      max: 3
-    };
-
-    console.log(options.key);
-    console.log(options.query);
-    this.props.searchYouTube(options, (videos) => {
-      this.setState({
-        videos: videos,
-        streamingVideo: videos[0]
-      });
-    });
 
 
-    OnSubmitChange()
-    //debounce function
-    //setTimeout of 500 ms maximum
-    //onSubmit
-    let debounce = () => {
-      this.props.searchYouTube(options, (videos) => {
-        this.setState({
-          videos: videos,
-          //streamingVideo: data.items[0]
-        });
-      });
-      // console.log(this.props);
-      // console.log(data.items);
-    };
 
-    this.setState({
-      timeout: setTimeout(debounce, 500)
-    });
-
-
-    ----------------
-    In Search.js
-    We need to handle the submit button for Input value input dom from innerNode
-
-    //for Advanced:
-    //fetch API
-    //create pagination for API
-
-*/

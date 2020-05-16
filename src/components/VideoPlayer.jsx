@@ -1,5 +1,5 @@
 let VideoPlayer = ({streamVideo}) => {
-  let url = `https://www.youtube.com/embed/${streamVideo.id.videoId}?autoplay=0`;
+  let url = `https://www.youtube.com/embed/${streamVideo.id.videoId}?autoplay=1`;
   return (
     <div className="video-player">
       <div className="embed-responsive embed-responsive-16by9">

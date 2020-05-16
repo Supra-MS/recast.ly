@@ -1,6 +1,6 @@
-var Search = (props) => (
+let Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" onSubmit={(event) => props.searchSubmit(event.target.value)}/>
+    <input className="form-control" type="text" onChange={(event) => props.searchSubmit(event.target.value)}/>
     <button className="btn hidden-sm-down">
       <span className="glyphicon glyphicon-search"></span>
     </button>
@@ -11,4 +11,5 @@ var Search = (props) => (
 // `var` declarations will only exist globally where explicitly defined
 export default Search;
 
+// this.handleSubmit = _.debounce(this.handleSubmit, 500);
 
