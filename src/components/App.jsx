@@ -12,9 +12,9 @@ class App extends React.Component {
       videos: exampleVideoData,
       streamingVideo: exampleVideoData[0]
     };
-    // Tests are passing without any timeouts[ - uncomment debounce timeout]. If we give timeouts then it is failing.
     this.onSubmitChange = this.onSubmitChange.bind(this);
-    this.onSubmitChange = _.debounce(this.onSubmitChange, 2000);
+    // Tests are passing without any timeouts[ - comment debounce timeout]. If we give timeouts then it is failing.
+    // this.onSubmitChange = _.debounce(this.onSubmitChange, 2000);
   }
 
   handleVideoClick(video) {
@@ -26,7 +26,9 @@ class App extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.onSubmitChange('violin');
-    }, 1500);
+    }, 500);
+
+
     // order of running:
     // constructor, render, componentDidMount
     // this.onSubmitChange = _.debounce(this.onSubmitChange, 2000);
@@ -40,9 +42,9 @@ class App extends React.Component {
       max: 3
     };
 
-    console.log('Inside submit');
-    console.log(options.key);
-    console.log(options.query);
+    // console.log('Inside submit');
+    // console.log(options.key);
+    // console.log(options.query);
 
     this.props.searchYouTube(options, (videos) => {
       this.setState({
@@ -85,7 +87,7 @@ class App extends React.Component {
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
-//window.App = App;
+// window.App = App;
 export default App;
 
 

@@ -21,6 +21,7 @@ describe ('Search', function() {
       );
     });
 
+    // comment debounce timeout in App.js to pass the test
     it('should load live data when app is initialized', function() {
       var videoEntryTitleElements = scryRenderedDOMComponentsWithClass(app, 'video-list-entry-title');
       videoEntryTitleElements.forEach((videoEntryTitle, i) => {
